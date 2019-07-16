@@ -8,6 +8,7 @@ const app = express();
 connectDB();
 
 // Init Middleware
+app.use(requireHTTPS);
 app.use(express.json({ extended: false }));
 
 // Define routes
