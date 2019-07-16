@@ -1,7 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db')
 const path = require('path')
-import requireHTTPS from './middleware/reqHTTPS';
 
 const app = express();
 
@@ -9,6 +8,13 @@ const app = express();
 connectDB();
 
 // Init Middleware
+function requireHTTPS(req, res, next) {
+    // The 'x-forwarded-proto' check is for Heroku
+    if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV !== "development") {
+        return res.redirect('https://' + req.get('host') + req.url);
+    }
+    next();
+}
 app.use(requireHTTPS);
 app.use(express.json({ extended: false }));
 
