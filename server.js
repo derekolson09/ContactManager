@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/db')
 const path = require('path')
+import requireHTTPS from './middleware/reqHTTPS';
 
 const app = express();
 
