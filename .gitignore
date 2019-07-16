@@ -30,4 +30,4 @@ chrome-user-data
 /client/.env.production.local
 
 npm-debug.log*
-config
+
